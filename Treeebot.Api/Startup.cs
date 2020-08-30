@@ -27,6 +27,7 @@ namespace Treeebot.Api
         /// </summary>
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddOptions();
             services.AddTreeebot(_configuration);
             services.AddControllers();
         }
