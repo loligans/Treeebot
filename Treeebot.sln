@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Treeebot.Application", "Tre
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Treeebot.Clients", "Treeebot.Clients\Treeebot.Clients.csproj", "{2BCA7E2A-9CF6-43DB-B4D1-8E7A85AB75E3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Treeebot.Extensions", "Treeebot.Extensions\Treeebot.Extensions.csproj", "{5F0D4737-34F8-49D2-B111-FAEFBD079CAE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -58,5 +60,17 @@ Global
 		{2BCA7E2A-9CF6-43DB-B4D1-8E7A85AB75E3}.Release|x64.Build.0 = Release|Any CPU
 		{2BCA7E2A-9CF6-43DB-B4D1-8E7A85AB75E3}.Release|x86.ActiveCfg = Release|Any CPU
 		{2BCA7E2A-9CF6-43DB-B4D1-8E7A85AB75E3}.Release|x86.Build.0 = Release|Any CPU
+		{5F0D4737-34F8-49D2-B111-FAEFBD079CAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F0D4737-34F8-49D2-B111-FAEFBD079CAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F0D4737-34F8-49D2-B111-FAEFBD079CAE}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{5F0D4737-34F8-49D2-B111-FAEFBD079CAE}.Debug|x64.Build.0 = Debug|Any CPU
+		{5F0D4737-34F8-49D2-B111-FAEFBD079CAE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5F0D4737-34F8-49D2-B111-FAEFBD079CAE}.Debug|x86.Build.0 = Debug|Any CPU
+		{5F0D4737-34F8-49D2-B111-FAEFBD079CAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F0D4737-34F8-49D2-B111-FAEFBD079CAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F0D4737-34F8-49D2-B111-FAEFBD079CAE}.Release|x64.ActiveCfg = Release|Any CPU
+		{5F0D4737-34F8-49D2-B111-FAEFBD079CAE}.Release|x64.Build.0 = Release|Any CPU
+		{5F0D4737-34F8-49D2-B111-FAEFBD079CAE}.Release|x86.ActiveCfg = Release|Any CPU
+		{5F0D4737-34F8-49D2-B111-FAEFBD079CAE}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

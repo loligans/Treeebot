@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.Json.Serialization;
 
-namespace Treeebot.Clients.Twitch.KrakenModels
+namespace Treeebot.Clients.Twitch.Kraken.Models
 {
     public class Emote
     {

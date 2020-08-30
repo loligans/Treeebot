@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Treeebot.Clients.Twitch
+namespace Treeebot.Clients.Twitch.Kraken
 {
     public class KrakenConfiguration
     {

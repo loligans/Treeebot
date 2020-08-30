@@ -3,7 +3,7 @@ using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace Treeebot.Clients.Extensions
+namespace Treeebot.Extensions
 {
     /// <summary>
     /// Provides useful extensions for <see cref="HttpResponseMessage"/>'s

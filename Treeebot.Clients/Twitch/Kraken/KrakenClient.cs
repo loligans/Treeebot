@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Linq;
-using Treeebot.Clients.Twitch.KrakenModels;
-using Treeebot.Clients.Extensions;
+using Treeebot.Clients.Twitch.Kraken.Models;
+using Treeebot.Extensions;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Treeebot.Clients.Twitch
+namespace Treeebot.Clients.Twitch.Kraken
 {
     /// <summary>
     /// A Twitch v5 Api client implementation

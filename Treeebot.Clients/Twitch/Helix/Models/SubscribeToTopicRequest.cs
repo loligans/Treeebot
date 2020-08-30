@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.Json.Serialization;
 
-namespace Treeebot.Clients.Twitch.HelixModels
+namespace Treeebot.Clients.Twitch.Helix.Models
 {
     public class SubscribeToTopicRequest
     {
