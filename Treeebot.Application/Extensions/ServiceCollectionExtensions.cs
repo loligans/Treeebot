@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Dynamic;
 using System.Text;
 using Treeebot.Application.Configuration;
+using Treeebot.Application.EventHandlers;
+using Treeebot.Application.Services;
 using TwitchLib.Api;
 using TwitchLib.Api.Interfaces;
 using TwitchLib.Client;
@@ -28,17 +30,25 @@ namespace Treeebot.Application.Extensions
             IConfiguration configuration)
         {
             // Resolve configuration
-            serviceCollection.Configure<TwitchConfiguration>(configuration.GetSection(nameof(TwitchConfiguration)));
-            serviceCollection.Configure<SteamConfiguration>(configuration.GetSection(nameof(SteamConfiguration)));
-
-            // Register the event handler service
-            serviceCollection.AddSingleton<ITreeebotEventHandlers, TreeebotEventHandlers>();
+            serviceCollection.Configure<TwitchWebhooksConfiguration>(configuration.GetSection(nameof(TwitchWebhooksConfiguration)));
+            serviceCollection.Configure<TwitchApiConfiguration>(configuration.GetSection(nameof(TwitchApiConfiguration)));
+            serviceCollection.Configure<SteamApiConfiguration>(configuration.GetSection(nameof(SteamApiConfiguration)));
 
             // Set up Twitch services
             AddTwitchAPI(serviceCollection);
             AddTwitchChatClient(serviceCollection);
             AddTwitchPubSub(serviceCollection);
-            
+
+            // Register event handlers
+            serviceCollection.AddSingleton<IChannelHandler, ChannelHandler>();
+            serviceCollection.AddSingleton<IChatHandler, ChatHandler>();
+            serviceCollection.AddSingleton<IStreamHandler, StreamHandler>();
+            serviceCollection.AddSingleton<ISubscriptionHandler, SubscriptionHandler>();
+
+            // Register services
+            serviceCollection.AddSingleton<ICommandService, CommandService>();
+            serviceCollection.AddSingleton<IEmoteService, EmoteService>();
+
             return serviceCollection;
         }
 
@@ -61,7 +71,7 @@ namespace Treeebot.Application.Extensions
             serviceCollection.AddSingleton<ITwitchClient, TwitchClient>();
             serviceCollection.AddSingleton<ITwitchClient, TwitchClient>(services =>
             {
-                var twitchConfig = services.GetService<IOptions<TwitchConfiguration>>();
+                var twitchConfig = services.GetService<IOptions<TwitchApiConfiguration>>();
                 var credentials = new ConnectionCredentials(twitchConfig.Value.ClientId, twitchConfig.Value.ClientSecret);
                 var clientOptions = new ClientOptions
                 {

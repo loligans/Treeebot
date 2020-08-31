@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Treeebot.Clients.Twitch.Helix
+namespace Treeebot.Application.Configuration
 {
-    public class HelixConfiguration
+    public class TwitchApiConfiguration
     {
-        public string BaseAddress { get; set;  }
         public string ClientId { get; set; }
         public string ClientSecret { get; set; }
+        public string PublisherSecret { get; set; }
     }
 }
