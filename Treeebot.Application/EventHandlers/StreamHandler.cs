@@ -9,13 +9,13 @@ using TwitchLib.PubSub.Interfaces;
 
 namespace Treeebot.Application.EventHandlers
 {
-    internal interface IStreamHandler
+    internal interface IStreamHandler : IDisposable
     {
         void OnBeingHosted(object sender, OnBeingHostedArgs args);
         void OnRaidNotification(object sender, OnRaidNotificationArgs args);
         void OnFollow(object sender, OnFollowArgs args);
     }
-    internal class StreamHandler : IStreamHandler
+    internal class StreamHandler : IStreamHandler, IDisposable
     {
         private readonly ILogger<StreamHandler> _logger;
         private readonly ITwitchClient _twitchClient;
@@ -31,20 +31,28 @@ namespace Treeebot.Application.EventHandlers
             _twitchPubSub = twitchPubSub;
             _twitchPubSub.OnFollow += OnFollow;
         }
+
         public void OnBeingHosted(object sender, OnBeingHostedArgs args)
         {
-            throw new NotImplementedException();
+            _logger.LogError("{0} not implemented", nameof(OnBeingHosted));
         }
 
         public void OnFollow(object sender, OnFollowArgs args)
         {
-            throw new NotImplementedException();
+            _logger.LogError("{0} not implemented", nameof(OnFollow));
         }
 
         public void OnRaidNotification(object sender, OnRaidNotificationArgs args)
         {
-            
-            throw new NotImplementedException();
+
+            _logger.LogError("{0} not implemented", nameof(OnRaidNotification));
+        }
+
+        public void Dispose()
+        {
+            _twitchClient.OnRaidNotification -= OnRaidNotification;
+            _twitchClient.OnBeingHosted -= OnBeingHosted;
+            _twitchPubSub.OnFollow -= OnFollow;
         }
     }
 }

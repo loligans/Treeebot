@@ -6,10 +6,15 @@ using TwitchLib.Client.Models;
 
 namespace Treeebot.Application.Services
 {
+    /// <summary>
+    /// Service for executing chat commands
+    /// </summary>
     public interface ICommandService
     {
         void ProcessCommand(ChatMessage chatMessage);
     }
+
+    /// <inheritdoc cref="ICommandService"/>
     internal class CommandService : ICommandService
     {
         private readonly ILogger<CommandService> _logger;
@@ -20,8 +25,7 @@ namespace Treeebot.Application.Services
 
         public void ProcessCommand(ChatMessage chatMessage)
         {
-            _logger.LogDebug("ChatMessage:{0}:{1}", chatMessage.Username, chatMessage.Message);
-            throw new NotImplementedException();
+            _logger.LogError("{0} not implemented", nameof(ProcessCommand));
         }
     }
 }

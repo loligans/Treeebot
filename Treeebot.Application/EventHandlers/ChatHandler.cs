@@ -8,14 +8,14 @@ using TwitchLib.Client.Interfaces;
 
 namespace Treeebot.Application.EventHandlers
 {
-    public interface IChatHandler
+    internal interface IChatHandler : IDisposable
     {
         void OnChatCleared(object sender, OnChatClearedArgs args);
         void OnMessageReceived(object sender, OnMessageReceivedArgs args);
         void OnUserBanned(object sender, OnUserBannedArgs args);
         void OnVIPsReceived(object sender, OnVIPsReceivedArgs args);
     }
-    internal class ChatHandler : IChatHandler
+    internal class ChatHandler : IChatHandler, IDisposable
     {
         private readonly ILogger<ChatHandler> _logger;
         private readonly ITwitchClient _twitchClient;
@@ -36,22 +36,31 @@ namespace Treeebot.Application.EventHandlers
 
         public void OnChatCleared(object sender, OnChatClearedArgs args)
         {
-            throw new NotImplementedException();
+            _logger.LogError("{0} not implemented", nameof(OnChatCleared));
         }
 
         public void OnMessageReceived(object sender, OnMessageReceivedArgs args)
         {
+            _logger.LogInformation("{0} not implemented", nameof(OnMessageReceived));
             _commandService.ProcessCommand(args.ChatMessage);
         }
 
         public void OnUserBanned(object sender, OnUserBannedArgs args)
         {
-            throw new NotImplementedException();
+            _logger.LogError("{0} not implemented", nameof(OnUserBanned));
         }
 
         public void OnVIPsReceived(object sender, OnVIPsReceivedArgs args)
         {
-            throw new NotImplementedException();
+            _logger.LogError("{0} not implemented", nameof(OnVIPsReceived));
+        }
+
+        public void Dispose()
+        {
+            _twitchClient.OnChatCleared -= OnChatCleared;
+            _twitchClient.OnMessageReceived -= OnMessageReceived;
+            _twitchClient.OnUserBanned -= OnUserBanned;
+            _twitchClient.OnVIPsReceived -= OnVIPsReceived;
         }
     }
 }

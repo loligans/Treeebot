@@ -4,9 +4,10 @@ using System.Text;
 
 namespace Treeebot.Application.Configuration
 {
-    public class SteamApiConfiguration
+    public class TwitchIrcConfiguration
     {
-        public string? ApiKey { get; set; }
         public string? UserId { get; set; }
+        public string? UserOAuthPassword { get; set; }
+        public IEnumerable<string?>? Channels { get; set; }
     }
 }

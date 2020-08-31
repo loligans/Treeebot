@@ -7,14 +7,14 @@ using TwitchLib.Client.Interfaces;
 
 namespace Treeebot.Application.EventHandlers
 {
-    public interface ISubscriptionHandler
+    internal interface ISubscriptionHandler : IDisposable
     {
         void OnGiftedSubscription(object sender, OnGiftedSubscriptionArgs args);
         void OnResubscriber(object sender, OnReSubscriberArgs args);
         void OnCommunitySubscription(object sender, OnCommunitySubscriptionArgs args);
         void OnNewSubscriber(object sender, OnNewSubscriberArgs args);
     }
-    internal class SubscriptionHandler : ISubscriptionHandler
+    internal class SubscriptionHandler : ISubscriptionHandler, IDisposable
     {
         private readonly ILogger<SubscriptionHandler> _logger;
         private readonly ITwitchClient _twitchClient;
@@ -28,24 +28,33 @@ namespace Treeebot.Application.EventHandlers
             _twitchClient.OnCommunitySubscription += OnCommunitySubscription;
             _twitchClient.OnNewSubscriber += OnNewSubscriber;
         }
+
         public void OnCommunitySubscription(object sender, OnCommunitySubscriptionArgs args)
         {
-            throw new NotImplementedException();
+            _logger.LogError("{0} not implemented", nameof(OnCommunitySubscription));
         }
 
         public void OnGiftedSubscription(object sender, OnGiftedSubscriptionArgs args)
         {
-            throw new NotImplementedException();
+            _logger.LogError("{0} not implemented", nameof(OnGiftedSubscription));
         }
 
         public void OnNewSubscriber(object sender, OnNewSubscriberArgs args)
         {
-            throw new NotImplementedException();
+            _logger.LogError("{0} not implemented", nameof(OnNewSubscriber));
         }
 
         public void OnResubscriber(object sender, OnReSubscriberArgs args)
         {
-            throw new NotImplementedException();
+            _logger.LogError("{0} not implemented", nameof(OnResubscriber));
+        }
+
+        public void Dispose()
+        {
+            _twitchClient.OnCommunitySubscription -= OnCommunitySubscription;
+            _twitchClient.OnGiftedSubscription -= OnGiftedSubscription;
+            _twitchClient.OnCommunitySubscription -= OnCommunitySubscription;
+            _twitchClient.OnNewSubscriber -= OnNewSubscriber;
         }
     }
 }
