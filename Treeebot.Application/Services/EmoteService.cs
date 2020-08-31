@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -14,5 +15,10 @@ namespace Treeebot.Application.Services
     /// <inheritdoc cref="IEmoteService"/>
     internal class EmoteService : IEmoteService
     {
+        private readonly ILogger<EmoteService> _logger;
+        public EmoteService(ILogger<EmoteService> logger)
+        {
+            _logger = logger;
+        }
     }
 }
