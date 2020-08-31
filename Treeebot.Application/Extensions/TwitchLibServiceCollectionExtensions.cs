@@ -27,25 +27,13 @@ namespace Treeebot.Application.Extensions
         /// </summary>
         public static IServiceCollection AddTwitchLib(this IServiceCollection serviceCollection, IConfiguration configuration)
         {
-            AddTwitchAPI(serviceCollection);
-            AddTwitchChatClient(serviceCollection);
-            AddTwitchPubSub(serviceCollection);
-            return serviceCollection;
-        }
-
-        /// <summary>
-        /// Registers the Twitch V5 and Helix Api client's
-        /// </summary>
-        private static void AddTwitchAPI(IServiceCollection serviceCollection)
-        {
+            // Registers the Twitch V5 and Helix Api client's
             serviceCollection.AddSingleton<ITwitchAPI, TwitchAPI>();
-        }
 
-        /// <summary>
-        /// Registers the Twitch chat client
-        /// </summary>
-        private static void AddTwitchChatClient(IServiceCollection serviceCollection)
-        {
+            // Registers the Twitch PubSub client
+            serviceCollection.AddSingleton<ITwitchPubSub, TwitchPubSub>();
+            
+            // Registers the Twitch chat client
             serviceCollection.AddSingleton<ITwitchClient, TwitchClient>(services =>
             {
                 // Configure the chat client
@@ -63,14 +51,7 @@ namespace Treeebot.Application.Extensions
                 var twitchClient = new TwitchClient(webSocketClient, ClientProtocol.WebSocket, twitchClientLogger);
                 return twitchClient;
             });
-        }
-
-        /// <summary>
-        /// Registers the Twitch PubSub client
-        /// </summary>
-        private static void AddTwitchPubSub(IServiceCollection serviceCollection)
-        {
-            serviceCollection.AddSingleton<ITwitchPubSub, TwitchPubSub>();
+            return serviceCollection;
         }
     }
 }
